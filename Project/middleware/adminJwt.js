@@ -1,0 +1,12 @@
+const jwt = require('jsonwebtoken')
+
+exports.jwtAdminAuth = (req, res, next) => {
+    if (req.cookies && req.cookies.adminToken) {
+        jwt.verify(req.cookies.adminToken, "eshitaadmin-23051998@#1!4959", (err, data) => {
+            req.admin = data
+            next()
+        })
+    } else {
+        next()
+    }
+}
